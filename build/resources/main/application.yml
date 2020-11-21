@@ -1,0 +1,50 @@
+server:
+  port: 8081
+
+spring:
+  profiles:
+    active: localreal
+    include:
+    - oauth
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+logging:
+  level:
+    root: info
+
+#----로컬 test 버전 db: spring_db serverport 8088---------------------------
+---
+spring:
+  profiles: localtest
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+#    url: jdbc:mariadb://localhost:3306/spring_db?useUnicode=true&charaterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+    url: jdbc:mariadb://210.107.78.153:9010/spring_db?useUnicode=true&charaterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+    username: spring
+    password: spring
+logging:
+  level:
+    root: info
+    org.hibernate:
+      SQL: info
+      type.descriptor.sql.BasicBinder: trace
+---
+#----로컬 real project 버전 db: bugslife_db serverport 8088---------------------------
+spring:
+  profiles: localreal
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://210.107.78.153:9010/bugslife_db?useUnicode=true&charaterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+    username: bugslife
+    password: bugslifee
+logging:
+  level:
+    root: info
+#----운영환경버전 db:? serverport:?---------------------------
+#    active: operation 

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="721bf7b9-c8d4-47c3-96c0-330b1ba295bb" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../service-api/final_API/.gradle/6.6.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../service-api/final_API/.gradle/6.6.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../service-api/final_API/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../service-api/final_API/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../service-api/final_API/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../service-api/final_API/.gradle/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../service-api/final_API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../service-api/final_API/.idea/workspace.xml" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/../service-api/final_API">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/../user-service">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../service-api/final_API" />
+  </component>
+  <component name="ProjectId" id="1kRTy3h9i43c7nTwuNhShndvfSw" />
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/com/erbf/bugsLife/bugBoard/config" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.erbf.bugsLife.bugBoard" />
+      <recent name="com.erbf.bugsLife" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Autumnsky\multicampus_project\final\bugboard-service\src\main\java\com\erbf\bugsLife\bugBoard\config" />
+      <recent name="C:\Users\Autumnsky\multicampus_project\final\bugboard-service\src\main\java\com\erbf\bugsLife\bugBoard" />
+      <recent name="C:\Users\Autumnsky\multicampus_project\final\bugboard-service\src\main\resources" />
+      <recent name="C:\Users\Autumnsky\multicampus_project\final\bugboard-service\src\main\java\com\erbf\bugsLife" />
+      <recent name="C:\Users\Autumnsky\multicampus_project\final\user-service\src\main\resources" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.BugsLifeApplication">
+    <configuration name="BugsBoardServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="bugboard-service.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.erbf.bugsLife.bugBoard.BugsBoardServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BugsLifeApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="bugsLife.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.erbf.bugsLife.BugsLifeApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="user-service.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.erbf.bugsLife.UserServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="721bf7b9-c8d4-47c3-96c0-330b1ba295bb" name="Default Changelist" comment="" />
+      <created>1605662654059</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1605662654059</updated>
+      <workItem from="1605662657865" duration="2533000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
