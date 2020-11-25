@@ -23,7 +23,6 @@ public class BugBoardController {
 
     @GetMapping("list/{uid}")
     public List<BugBoardQuestionDto> getBugBoradListByUid(@PathVariable Long uid){
-        System.out.println("받아오나요?");
         List<BugBoardQuestionDto> bugBoardList = bugBoardService.bugBoardListByUid(uid);
         return bugBoardList;
     }

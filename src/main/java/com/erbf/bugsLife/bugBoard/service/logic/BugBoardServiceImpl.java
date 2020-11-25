@@ -71,6 +71,40 @@ public class BugBoardServiceImpl implements BugBoardService {
     }
 
     @Override
+    @Transactional
+    public void updateQuestion(BugBoardQuestionDto questionDto) {
+
+        tagRepo.deleteAllByQuestionId(questionDto.getId());
+
+        List<BugBoardQuestionTag> bugBoardQuestionTags = new ArrayList<>();
+        questionDto.getTags().stream().forEach(tag -> {
+            bugBoardQuestionTags.add(
+                    BugBoardQuestionTag.builder()
+                            .tagName(tag)
+                            .build());
+        });
+
+        BugBoardQuestion bugBoardQuestion = BugBoardQuestion.builder()
+                .id(questionDto.getId())
+                .writerId(questionDto.getWriterId())
+                .title(questionDto.getTitle())
+                .content(questionDto.getContent())
+                .dueDate(questionDto.getDueDate())
+                .registDate(questionDto.getRegistDate())
+                .updateDate(getDate())
+                .build();
+
+        bugBoardQuestion.addQuestionTag(bugBoardQuestionTags);
+
+        bugBoardQuestion.getQuestionTags().stream().forEach(tag -> {
+            System.out.println(tag.getTagName());
+            System.out.println(tag.getId());
+        });
+
+        questionRepo.save(bugBoardQuestion);
+    }
+
+    @Override
     public void answerCreate(BugBoardAnswerDto bugBoardAnswerDto) {
         answerRepo.save(BugBoardAnswer.builder()
                 .questionId(bugBoardAnswerDto.getQuestionId())
@@ -178,30 +212,30 @@ public class BugBoardServiceImpl implements BugBoardService {
     public List<BugBoardQuestionDto> bugBoardList() {
         List<BugBoardQuestion> questions = questionRepo.findAll();
         List<BugBoardQuestionDto> questionDtos = questions.stream().map(BugBoardQuestion::toDto).collect(Collectors.toList());
-//        questionDtos.stream().forEach(
-//                questionDto -> {
+        questionDtos.stream().forEach(
+                questionDto -> {
 //                    User wrtier = userRepo.findById(questionDto.getWriterId()).get();
-//                    questionDto.setNumOfAnswers(answerRepo.findByQuestionId(questionDto.getId()).size());
+                    questionDto.setNumOfAnswers(answerRepo.findByQuestionId(questionDto.getId()).size());
 //                    questionDto.setWriterName(wrtier.getName());
 //                    questionDto.setWriterLevel(wrtier.getLevel());
-//                }
-//        );
+                }
+        );
 
 
         return questionDtos;
     }
 
-    @Override
-    public List<BugBoardCommentDto> getCommentByWriterId(Long writerId) {
-        List<BugBoardComment> comments = commentRepo.findByWriterId(writerId);
-        List<BugBoardCommentDto> commentDtos = comments.stream().map(BugBoardComment::toDto).collect(Collectors.toList());
-        return commentDtos;
-    }
+        @Override
+        public List<BugBoardCommentDto> getCommentByWriterId(Long writerId) {
+            List<BugBoardComment> comments = commentRepo.findByWriterId(writerId);
+            List<BugBoardCommentDto> commentDtos = comments.stream().map(BugBoardComment::toDto).collect(Collectors.toList());
+            return commentDtos;
+        }
 
-    @Override
-    public List<BugBoardQuestionDto> bugBoardListByUid(Long uid) {
-        List<BugBoardQuestion> questions = questionRepo.findByWriterId(uid);
-        List<BugBoardQuestionDto> questionDtos = questions.stream().map(BugBoardQuestion::toDto).collect(Collectors.toList());
+        @Override
+        public List<BugBoardQuestionDto> bugBoardListByUid(Long uid) {
+            List<BugBoardQuestion> questions = questionRepo.findByWriterId(uid);
+            List<BugBoardQuestionDto> questionDtos = questions.stream().map(BugBoardQuestion::toDto).collect(Collectors.toList());
 
 //        questionDtos.stream().forEach(
 //                questionDto ->  {
@@ -216,34 +250,12 @@ public class BugBoardServiceImpl implements BugBoardService {
     }
 
     @Override
-    public void updateQuestion(BugBoardQuestionDto questionDto) {
-
-        tagRepo.deleteByQuestionId(questionDto.getId());
-        List<BugBoardQuestionTag> bugBoardQuestionTags = new ArrayList<>();
-        questionDto.getTags().stream().forEach(tag -> {
-            bugBoardQuestionTags.add(
-                    BugBoardQuestionTag.builder()
-                            .tagName(tag)
-                            .build());
-        });
-
-        BugBoardQuestion bugBoardQuestion = BugBoardQuestion.builder()
-                .title(questionDto.getTitle())
-                .content(questionDto.getContent())
-                .dueDate(questionDto.getDueDate())
-                .point(questionDto.getPoint())
-                .updateDate(BugBoardServiceImpl.getDate())
-                .premium(questionDto.isPremium())
-                .build();
-
-        bugBoardQuestion.addQuestionTag(bugBoardQuestionTags);
-
-        questionRepo.save(bugBoardQuestion);
-    }
-
-    @Override
     public void updateAnswer(BugBoardAnswerDto answerDto) {
+
         answerRepo.save(BugBoardAnswer.builder()
+                .id(answerDto.getId())
+                .writerId(answerDto.getWriterId())
+                .registDate(answerDto.getRegistDate())
                 .questionId(answerDto.getQuestionId())
                 .content(answerDto.getContent())
                 .updateDate(getDate())
@@ -254,10 +266,12 @@ public class BugBoardServiceImpl implements BugBoardService {
     @Override
     public void updateComment(BugBoardCommentDto commentDto) {
         commentRepo.save(BugBoardComment.builder()
+                .id(commentDto.getId())
                 .answerId(commentDto.getAnswerId())
                 .questionId(commentDto.getQuestionId())
                 .content(commentDto.getContent())
                 .updateDate(getDate())
+                .registDate(commentDto.getRegistDate())
                 .build()
         );
     }
