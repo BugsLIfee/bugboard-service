@@ -49,6 +49,7 @@ public class BugBoardAnswer {
                 .id(this.id)
                 .writerId(this.writerId)
                 .content(this.content)
+                .questionId(this.questionId)
                 .selected(this.selected)
                 .blind(this.blind)
                 .reportCnt(this.reportCnt)
