@@ -98,6 +98,18 @@ public class BugBoardController {
         return new ResponseEntity<>("success", HttpStatus.OK);
     }
 
+    @GetMapping("/detail/{questionId}/delete-question-like/{userId}")
+    public ResponseEntity<?> deleteQuestionLike(@PathVariable Long questionId, @PathVariable Long userId) {
+        bugBoardService.deleteQuestionLike(questionId, userId);
+        return new ResponseEntity<>("success", HttpStatus.OK);
+    }
+
+    @GetMapping("/detail/{answerId}/delete-answer-like/{userId}")
+    public ResponseEntity<?> deleteAnswerLike(@PathVariable Long answerId, @PathVariable Long userId) {
+        bugBoardService.deleteAnswerLike(answerId, userId);
+        return new ResponseEntity<>("success", HttpStatus.OK);
+    }
+
     @GetMapping("/detail/{answerId}/add-answer-like/{userId}")
     public ResponseEntity<?> addAnswerLike(@PathVariable Long answerId, @PathVariable Long userId) {
         bugBoardService.addAnswerLike(answerId, userId);

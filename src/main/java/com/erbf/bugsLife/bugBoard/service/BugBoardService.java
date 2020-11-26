@@ -20,6 +20,8 @@ public interface BugBoardService {
     public abstract void updateComment(BugBoardCommentDto commentDto);
     public abstract void addQuestionLike(Long questionId, Long userId);
     public abstract void addAnswerLike(Long answerId, Long userId);
+    public abstract void deleteQuestionLike(Long questionId, Long userId);
+    public abstract void deleteAnswerLike(Long answerId, Long userId);
     public abstract void setBlind(String postType, Long id);
     public abstract void selectAnswer(Long id);
     public abstract List<BugBoardQuestionTagDto> tagList();
