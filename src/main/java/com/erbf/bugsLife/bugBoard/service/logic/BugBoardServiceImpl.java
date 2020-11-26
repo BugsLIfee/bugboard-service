@@ -7,6 +7,7 @@ import com.erbf.bugsLife.bugBoard.service.BugBoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.OneToMany;
 import javax.transaction.Transactional;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -285,6 +286,7 @@ public class BugBoardServiceImpl implements BugBoardService {
     }
 
     @Override
+    @Transactional
     public void addQuestionLike(Long questionId, Long userId) {
         BugBoardQuestion bugBoardQuestion = questionRepo.findById(questionId).get();
         bugBoardQuestion.setLikes(bugBoardQuestion.getLikes()+1);
@@ -296,6 +298,24 @@ public class BugBoardServiceImpl implements BugBoardService {
 
         questionLike.addQuestion(bugBoardQuestion);
         questionLikeRepo.save(questionLike);
+    }
+
+    @Override
+    public void deleteQuestionLike(Long questionId, Long userId) {
+        BugBoardQuestion bugBoardQuestion = questionRepo.findById(questionId).get();
+        bugBoardQuestion.setLikes(bugBoardQuestion.getLikes()-1);
+        questionRepo.save(bugBoardQuestion);
+
+        questionLikeRepo.deleteByQuestionIdAndUserId(questionId, userId);
+    }
+
+    @Override
+    public void deleteAnswerLike(Long answerId, Long userId) {
+        BugBoardAnswer answer = answerRepo.findById(answerId).get();
+        answer.setLikes(answer.getLikes()-1);
+        answerRepo.save(answer);
+
+        answerLikeRepo.deleteByAnswerIdAndUserId(answerId, userId);
     }
 
     @Override
@@ -364,6 +384,9 @@ public class BugBoardServiceImpl implements BugBoardService {
 
         return qLikes + aLikes;
     }
+
+
+
 
     private static String getDate() {
         Date date = new Date();
