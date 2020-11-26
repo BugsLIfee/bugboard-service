@@ -10,18 +10,18 @@ import javax.persistence.*;
 @Builder
 @Setter
 @AllArgsConstructor
-@SequenceGenerator(
-        name = "BUGBOARD_COMMENT_SEQ_GEN",
-        sequenceName = "bugboard_comment_seq",
-        initialValue = 1,
-        allocationSize = 2
-)
-@Entity
-public class BugBoardComment {
+            @SequenceGenerator(
+                    name = "BUGBOARD_COMMENT_SEQ_GEN",
+                    sequenceName = "bugboard_comment_seq",
+                    initialValue = 1,
+                    allocationSize = 2
+            )
+            @Entity
+            public class BugBoardComment {
 
-    @Id
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
+            @Id
+            @GeneratedValue(
+                    strategy = GenerationType.SEQUENCE,
             generator = "BUGBOARD_COMMENT_SEQ_GEN"
     )
     private Long id;

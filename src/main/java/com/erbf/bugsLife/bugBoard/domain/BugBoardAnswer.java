@@ -4,6 +4,9 @@ import com.erbf.bugsLife.bugBoard.application.web.BugBoardAnswerDto;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -44,6 +47,9 @@ public class BugBoardAnswer {
     @Column(columnDefinition = "integer default 0")
     private int likes;
 
+    @OneToMany(mappedBy = "answer")
+    private List<BugBoardAnswerLike> likeList = new ArrayList<>();
+
     public BugBoardAnswerDto toDto() {
         BugBoardAnswerDto bugBoardAnswerDto = BugBoardAnswerDto.builder()
                 .id(this.id)
@@ -55,6 +61,7 @@ public class BugBoardAnswer {
                 .reportCnt(this.reportCnt)
                 .registDate(this.registDate)
                 .updateDate(this.updateDate)
+                .likeList(this.likeList.stream().map(BugBoardAnswerLike::toDto).collect(Collectors.toList()))
                 .likes(this.likes)
                 .build();
 

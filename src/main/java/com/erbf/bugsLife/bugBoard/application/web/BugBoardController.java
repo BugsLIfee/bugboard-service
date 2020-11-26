@@ -92,21 +92,37 @@ public class BugBoardController {
         return new ResponseEntity<>("success", HttpStatus.OK);
     }
 
-    @GetMapping("/detail/{id}/add-question-like/")
-    public ResponseEntity<?> addQuestionLike(@PathVariable Long id) {
-        bugBoardService.addQuestionLike(id);
+    @GetMapping("/detail/{questionId}/add-question-like/{userId}")
+    public ResponseEntity<?> addQuestionLike(@PathVariable Long questionId, @PathVariable Long userId) {
+        bugBoardService.addQuestionLike(questionId, userId);
         return new ResponseEntity<>("success", HttpStatus.OK);
     }
 
-    @GetMapping("/detail/{id}/add-answer-like/")
-    public ResponseEntity<?> addAnswerLike(@PathVariable Long id) {
-        bugBoardService.addAnswerLike(id);
+    @GetMapping("/detail/{answerId}/add-answer-like/{userId}")
+    public ResponseEntity<?> addAnswerLike(@PathVariable Long answerId, @PathVariable Long userId) {
+        bugBoardService.addAnswerLike(answerId, userId);
         return new ResponseEntity<>("success", HttpStatus.OK);
     }
 
     @GetMapping("/setBlind/{postType}/{id}")
     public ResponseEntity<?> setBlind(@PathVariable String postType, @PathVariable Long id) {
-        bugBoardService.setBlind(postType, id);
+            bugBoardService.setBlind(postType, id);
+            return new ResponseEntity<>("success", HttpStatus.OK);
+        }
+
+    @GetMapping("/select-answer/{id}")
+    public ResponseEntity<?> answerSelect(@PathVariable Long id) {
+        bugBoardService.selectAnswer(id);
         return new ResponseEntity<>("success", HttpStatus.OK);
+    }
+
+    @GetMapping("/user-like/{userId}")
+    public int userLike(@PathVariable Long userId) {
+        return bugBoardService.getUserLike(userId);
+}
+
+    @GetMapping("/tags/")
+    public List<BugBoardQuestionTagDto> tagList() {
+        return bugBoardService.tagList();
     }
 }

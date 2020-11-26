@@ -1,9 +1,6 @@
 package com.erbf.bugsLife.bugBoard.service;
 
-import com.erbf.bugsLife.bugBoard.application.web.BugBoardAnswerDto;
-import com.erbf.bugsLife.bugBoard.application.web.BugBoardCommentDto;
-import com.erbf.bugsLife.bugBoard.application.web.BugBoardDetailDto;
-import com.erbf.bugsLife.bugBoard.application.web.BugBoardQuestionDto;
+import com.erbf.bugsLife.bugBoard.application.web.*;
 
 import java.util.List;
 
@@ -21,7 +18,10 @@ public interface BugBoardService {
     public abstract void updateAnswer(BugBoardAnswerDto answerDto);
     public abstract void updateQuestion(BugBoardQuestionDto questionDto);
     public abstract void updateComment(BugBoardCommentDto commentDto);
-    public abstract void addQuestionLike(Long id);
-    public abstract void addAnswerLike(Long id);
+    public abstract void addQuestionLike(Long questionId, Long userId);
+    public abstract void addAnswerLike(Long answerId, Long userId);
     public abstract void setBlind(String postType, Long id);
+    public abstract void selectAnswer(Long id);
+    public abstract List<BugBoardQuestionTagDto> tagList();
+    public abstract int getUserLike(Long id);
 }

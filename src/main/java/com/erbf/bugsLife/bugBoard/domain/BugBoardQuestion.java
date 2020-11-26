@@ -6,6 +6,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Getter
 @NoArgsConstructor
@@ -48,13 +49,16 @@ public class BugBoardQuestion {
     @Column(columnDefinition = "integer default 0")
     private int likes;
     private boolean premium;
+    private boolean done;
 
     @OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
     private List<BugBoardQuestionTag> questionTags = new ArrayList<BugBoardQuestionTag>();
 
+    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
+    private List<BugBoardQuestionLike> likeList = new ArrayList<>();
+
     public void addQuestionTag(List<BugBoardQuestionTag> bugBoardQuestionTags) {
         questionTags = bugBoardQuestionTags;
-
         questionTags.stream().forEach(bugBoardQuestionTag -> {
             bugBoardQuestionTag.setQuestion(this);
         });
@@ -80,9 +84,11 @@ public class BugBoardQuestion {
                 .view(this.view)
                 .registDate(this.registDate)
                 .updateDate(this.updateDate)
+                .done(this.done)
                 .reportCnt(this.reportCnt)
                 .likes(this.likes)
                 .tags(tags)
+                .likeList(this.likeList.stream().map(BugBoardQuestionLike::toDto).collect(Collectors.toList()))
                 .premium(this.premium)
                 .build();
 

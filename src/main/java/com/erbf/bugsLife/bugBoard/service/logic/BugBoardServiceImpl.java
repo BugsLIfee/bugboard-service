@@ -1,17 +1,8 @@
 package com.erbf.bugsLife.bugBoard.service.logic;
 
-import com.erbf.bugsLife.bugBoard.application.web.BugBoardAnswerDto;
-import com.erbf.bugsLife.bugBoard.application.web.BugBoardCommentDto;
-import com.erbf.bugsLife.bugBoard.application.web.BugBoardDetailDto;
-import com.erbf.bugsLife.bugBoard.application.web.BugBoardQuestionDto;
-import com.erbf.bugsLife.bugBoard.domain.BugBoardAnswer;
-import com.erbf.bugsLife.bugBoard.domain.BugBoardComment;
-import com.erbf.bugsLife.bugBoard.domain.BugBoardQuestion;
-import com.erbf.bugsLife.bugBoard.domain.BugBoardQuestionTag;
-import com.erbf.bugsLife.bugBoard.repository.BugBoardAnswerRepository;
-import com.erbf.bugsLife.bugBoard.repository.BugBoardCommentRepository;
-import com.erbf.bugsLife.bugBoard.repository.BugBoardQuestionRepository;
-import com.erbf.bugsLife.bugBoard.repository.BugBoardQuestionTagRepository;
+import com.erbf.bugsLife.bugBoard.application.web.*;
+import com.erbf.bugsLife.bugBoard.domain.*;
+import com.erbf.bugsLife.bugBoard.repository.*;
 import com.erbf.bugsLife.bugBoard.service.BugBoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,6 +33,12 @@ public class BugBoardServiceImpl implements BugBoardService {
     @Autowired
     BugBoardQuestionTagRepository tagRepo;
 
+    @Autowired
+    BugBoardQuestionLikeRepository questionLikeRepo;
+
+    @Autowired
+    BugBoardAnswerLikeRepository answerLikeRepo;
+
     @Transactional
     @Override
     public void questionCreate(BugBoardQuestionDto bugBoardPostingDto) {
@@ -62,6 +59,7 @@ public class BugBoardServiceImpl implements BugBoardService {
                 .point(bugBoardPostingDto.getPoint())
                 .registDate(BugBoardServiceImpl.getDate())
                 .updateDate(BugBoardServiceImpl.getDate())
+                .done(false)
                 .premium(bugBoardPostingDto.isPremium())
                 .build();
 
@@ -91,6 +89,7 @@ public class BugBoardServiceImpl implements BugBoardService {
                 .content(questionDto.getContent())
                 .dueDate(questionDto.getDueDate())
                 .registDate(questionDto.getRegistDate())
+                .done(questionDto.isDone())
                 .updateDate(getDate())
                 .build();
 
@@ -111,6 +110,7 @@ public class BugBoardServiceImpl implements BugBoardService {
                 .writerId(bugBoardAnswerDto.getWriterId())
                 .content(bugBoardAnswerDto.getContent())
                 .updateDate(getDate())
+                .selected(false)
                 .registDate(getDate())
                 .build()
         );
@@ -134,7 +134,6 @@ public class BugBoardServiceImpl implements BugBoardService {
     public void deleteQuestion(Long id) {
         List<BugBoardAnswer> answers = answerRepo.findByQuestionId(id);
         answers.stream().forEach(answer -> {
-            System.out.println();
             commentRepo.deleteByAnswerId(answer.getId());
         });
         questionRepo.deleteById(id);
@@ -220,12 +219,21 @@ public class BugBoardServiceImpl implements BugBoardService {
 //                    questionDto.setWriterLevel(wrtier.getLevel());
                 }
         );
-
-
         return questionDtos;
     }
 
-        @Override
+
+    @Override
+    public List<BugBoardQuestionTagDto> tagList() {
+        List<BugBoardQuestionTag> bugBoardQuestionTagList = new ArrayList<>();
+        bugBoardQuestionTagList = tagRepo.findAll();
+        List<BugBoardQuestionTagDto> tagDtos = bugBoardQuestionTagList.stream().map(BugBoardQuestionTag::toDto).collect(Collectors.toList());
+
+        return tagDtos;
+    }
+
+
+    @Override
         public List<BugBoardCommentDto> getCommentByWriterId(Long writerId) {
             List<BugBoardComment> comments = commentRepo.findByWriterId(writerId);
             List<BugBoardCommentDto> commentDtos = comments.stream().map(BugBoardComment::toDto).collect(Collectors.toList());
@@ -277,18 +285,48 @@ public class BugBoardServiceImpl implements BugBoardService {
     }
 
     @Override
-    public void addQuestionLike(Long id) {
-        BugBoardQuestion bugBoardQuestion = questionRepo.findById(id).get();
+    public void addQuestionLike(Long questionId, Long userId) {
+        BugBoardQuestion bugBoardQuestion = questionRepo.findById(questionId).get();
         bugBoardQuestion.setLikes(bugBoardQuestion.getLikes()+1);
         questionRepo.save(bugBoardQuestion);
+
+        BugBoardQuestionLike questionLike = BugBoardQuestionLike.builder()
+                .userId(userId)
+                .build();
+
+        questionLike.addQuestion(bugBoardQuestion);
+        questionLikeRepo.save(questionLike);
     }
 
     @Override
-    public void addAnswerLike(Long id) {
-        BugBoardAnswer answer = answerRepo.findById(id).get();
+    @Transactional
+    public void addAnswerLike(Long answerId, Long userId) {
+        BugBoardAnswer answer = answerRepo.findById(answerId).get();
         answer.setLikes(answer.getLikes()+1);
         answerRepo.save(answer);
+
+        BugBoardAnswerLike answerLike = BugBoardAnswerLike.builder()
+                .userId(userId)
+                .build();
+        answerLike.addAnswer(answer);
+        answerLikeRepo.save(answerLike);
     }
+
+//    @Override
+//    @Transactional
+//    public void deleteAnswerLike(Long answerId, Long userId) {
+//        BugBoardAnswer answer = answerRepo.findById(answerId).get();
+//        answer.setLikes(answer.getLikes()-1);
+//        answerRepo.save(answer);
+//
+//        BugBoardAnswerLike answerLike = BugBoardAnswerLike.builder()
+//                .userId(userId)
+//                .build();
+//        answerLike.addAnswer(answer);
+//        answerLikeRepo.(answerLike);
+//    }
+
+
 
     @Override
     public void setBlind(String postType, Long id) {
@@ -307,6 +345,25 @@ public class BugBoardServiceImpl implements BugBoardService {
         }
     }
 
+    @Override
+    public void selectAnswer(Long id) {
+        BugBoardAnswer answer = answerRepo.findById(id).get();
+        BugBoardQuestion question = questionRepo.findById(answer.getQuestionId()).get();
+
+        answer.setSelected(true);
+        question.setDone(true);
+
+        answerRepo.save(answer);
+        questionRepo.save(question);
+    }
+
+    @Override
+    public int getUserLike(Long id) {
+        int qLikes = questionLikeRepo.findByUserId(id).size();
+        int aLikes = answerLikeRepo.findByUserId(id).size();
+
+        return qLikes + aLikes;
+    }
 
     private static String getDate() {
         Date date = new Date();
