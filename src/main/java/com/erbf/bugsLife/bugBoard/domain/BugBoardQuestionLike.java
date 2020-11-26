@@ -1,7 +1,6 @@
 package com.erbf.bugsLife.bugBoard.domain;
 
-import com.erbf.bugsLife.bugBoard.application.web.BugBoardQuestionDto;
-import com.erbf.bugsLife.bugBoard.application.web.BugBoardQuestionTagDto;
+import com.erbf.bugsLife.bugBoard.application.web.BugBoardQuestionLikeDto;
 import lombok.*;
 
 import javax.persistence.*;
@@ -12,22 +11,26 @@ import javax.persistence.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class BugBoardQuestionTag {
+public class BugBoardQuestionLike {
 
     @Id
     @GeneratedValue
     private Long id;
+    private Long userId;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "question_id")
     private BugBoardQuestion question;
-    private String tagName;
 
-    public BugBoardQuestionTagDto toDto() {
-        return BugBoardQuestionTagDto.builder()
+    public void addQuestion(BugBoardQuestion question) {
+        this.question = question;
+        question.getLikeList().add(this);
+    }
+
+    public BugBoardQuestionLikeDto toDto() {
+        return BugBoardQuestionLikeDto.builder()
                 .id(this.id)
-                .question(this.question.toDto())
-                .tagName(this.tagName)
+                .userId(this.userId)
                 .build();
     }
 }

@@ -21,6 +21,7 @@ public class BugBoardQuestionDto {
     private int point;
     private boolean publicPost;
     private boolean premium;
+    private boolean done;
     private int writerLevel;
     private boolean blind;
     private int view;
@@ -31,6 +32,7 @@ public class BugBoardQuestionDto {
     private int numOfAnswers;
     private List<String> tags;
     private List<BugBoardCommentDto> comments;
+    private List<BugBoardQuestionLikeDto> likeList;
 
     public BugBoardQuestion toEntity() {
         return BugBoardQuestion.builder()

@@ -1,6 +1,7 @@
 package com.erbf.bugsLife.bugBoard.application.web;
 
 import com.erbf.bugsLife.bugBoard.domain.BugBoardAnswer;
+import com.erbf.bugsLife.bugBoard.domain.BugBoardAnswerLike;
 import lombok.*;
 
 import java.util.List;
@@ -25,12 +26,6 @@ public class BugBoardAnswerDto {
     private String updateDate;
     private int likes;
     private List<BugBoardCommentDto> comments;
+    private List<BugBoardAnswerLikeDto> likeList;
 
-    public BugBoardAnswer toEntity() {
-        return BugBoardAnswer.builder()
-                .questionId(this.questionId)
-                .writerId(this.writerId)
-                .content(this.content)
-                .build();
-    }
 }

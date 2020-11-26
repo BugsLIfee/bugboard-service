@@ -21,14 +21,4 @@ public class BugBoardCommentDto {
     private int writerLevel;
     private String registDate;
     private String updateDate;
-
-    public BugBoardComment toEntity() {
-        return BugBoardComment.builder()
-                .answerId(this.answerId)
-                .questionId(this.questionId)
-                .blind(this.blind)
-                .content(this.content)
-                .writerId(this.writerId)
-                .build();
-    }
 }
