@@ -5,58 +5,77 @@ com/erbf/bugsLife/bugBoard/domain/BugBoardAnswer.java
  com.erbf.bugsLife.bugBoard.domain.BugBoardAnswer$BugBoardAnswerBuilder
 com/erbf/bugsLife/config/CustomUserDetailsService.java
  com.erbf.bugsLife.config.CustomUserDetailsService
-com/erbf/bugsLife/bugBoard/repository/BugBoardQuestionRepository.java
- com.erbf.bugsLife.bugBoard.repository.BugBoardQuestionRepository
-com/erbf/bugsLife/config/TokenProvider.java
- com.erbf.bugsLife.config.TokenProvider
+com/erbf/bugsLife/bugBoard/application/web/BugBoardAnswerLikeDto.java
+ com.erbf.bugsLife.bugBoard.application.web.BugBoardAnswerLikeDto
+ com.erbf.bugsLife.bugBoard.application.web.BugBoardAnswerLikeDto$BugBoardAnswerLikeDtoBuilder
+com/erbf/bugsLife/bugBoard/repository/BugBoardQuestionTagRepository.java
+ com.erbf.bugsLife.bugBoard.repository.BugBoardQuestionTagRepository
+com/erbf/bugsLife/bugBoard/application/web/BugBoardQuestionLikeDto.java
+ com.erbf.bugsLife.bugBoard.application.web.BugBoardQuestionLikeDto
+ com.erbf.bugsLife.bugBoard.application.web.BugBoardQuestionLikeDto$BugBoardQuestionLikeDtoBuilder
 com/erbf/bugsLife/bugBoard/repository/BugBoardCommentRepository.java
  com.erbf.bugsLife.bugBoard.repository.BugBoardCommentRepository
 com/erbf/bugsLife/config/TokenAuthenticationFilter.java
  com.erbf.bugsLife.config.TokenAuthenticationFilter
+com/erbf/bugsLife/bugBoard/service/BugBoardService.java
+ com.erbf.bugsLife.bugBoard.service.BugBoardService
 com/erbf/bugsLife/bugBoard/application/web/BugBoardCommentDto.java
  com.erbf.bugsLife.bugBoard.application.web.BugBoardCommentDto
  com.erbf.bugsLife.bugBoard.application.web.BugBoardCommentDto$BugBoardCommentDtoBuilder
-com/erbf/bugsLife/BugBoardServiceApplication.java
- com.erbf.bugsLife.BugBoardServiceApplication
-com/erbf/bugsLife/config/DBRunner.java
- com.erbf.bugsLife.config.DBRunner
-com/erbf/bugsLife/bugBoard/domain/BugBoardQuestion.java
- com.erbf.bugsLife.bugBoard.domain.BugBoardQuestion
- com.erbf.bugsLife.bugBoard.domain.BugBoardQuestion$BugBoardQuestionBuilder
-com/erbf/bugsLife/config/UserPrincipal.java
- com.erbf.bugsLife.config.UserPrincipal
 com/erbf/bugsLife/config/WebMvcConfig.java
  com.erbf.bugsLife.config.WebMvcConfig
-com/erbf/bugsLife/config/RestAuthenticationEntryPoint.java
- com.erbf.bugsLife.config.RestAuthenticationEntryPoint
+com/erbf/bugsLife/config/DBRunner.java
+ com.erbf.bugsLife.config.DBRunner
+com/erbf/bugsLife/bugBoard/application/web/BugBoardDetailDto.java
+ com.erbf.bugsLife.bugBoard.application.web.BugBoardDetailDto
+ com.erbf.bugsLife.bugBoard.application.web.BugBoardDetailDto$BugBoardDetailDtoBuilder
+com/erbf/bugsLife/config/TokenProvider.java
+ com.erbf.bugsLife.config.TokenProvider
+com/erbf/bugsLife/config/UserPrincipal.java
+ com.erbf.bugsLife.config.UserPrincipal
+com/erbf/bugsLife/BugBoardServiceApplication.java
+ com.erbf.bugsLife.BugBoardServiceApplication
+com/erbf/bugsLife/bugBoard/application/web/BugBoardQuestionDto.java
+ com.erbf.bugsLife.bugBoard.application.web.BugBoardQuestionDto
+ com.erbf.bugsLife.bugBoard.application.web.BugBoardQuestionDto$BugBoardQuestionDtoBuilder
 com/erbf/bugsLife/bugBoard/application/web/BugBoardAnswerDto.java
  com.erbf.bugsLife.bugBoard.application.web.BugBoardAnswerDto
  com.erbf.bugsLife.bugBoard.application.web.BugBoardAnswerDto$BugBoardAnswerDtoBuilder
-com/erbf/bugsLife/bugBoard/repository/BugBoardAnswerRepository.java
- com.erbf.bugsLife.bugBoard.repository.BugBoardAnswerRepository
-com/erbf/bugsLife/config/SwaggerConfig.java
- com.erbf.bugsLife.config.SwaggerConfig
-com/erbf/bugsLife/bugBoard/domain/BugBoardComment.java
- com.erbf.bugsLife.bugBoard.domain.BugBoardComment
- com.erbf.bugsLife.bugBoard.domain.BugBoardComment$BugBoardCommentBuilder
+com/erbf/bugsLife/bugBoard/domain/BugBoardQuestion.java
+ com.erbf.bugsLife.bugBoard.domain.BugBoardQuestion
+ com.erbf.bugsLife.bugBoard.domain.BugBoardQuestion$BugBoardQuestionBuilder
+com/erbf/bugsLife/bugBoard/domain/BugBoardQuestionLike.java
+ com.erbf.bugsLife.bugBoard.domain.BugBoardQuestionLike
+ com.erbf.bugsLife.bugBoard.domain.BugBoardQuestionLike$BugBoardQuestionLikeBuilder
+com/erbf/bugsLife/bugBoard/repository/BugBoardQuestionRepository.java
+ com.erbf.bugsLife.bugBoard.repository.BugBoardQuestionRepository
 com/erbf/bugsLife/config/AppProperties.java
  com.erbf.bugsLife.config.AppProperties
  com.erbf.bugsLife.config.AppProperties$Auth
  com.erbf.bugsLife.config.AppProperties$OAuth2
+com/erbf/bugsLife/bugBoard/domain/BugBoardComment.java
+ com.erbf.bugsLife.bugBoard.domain.BugBoardComment
+ com.erbf.bugsLife.bugBoard.domain.BugBoardComment$BugBoardCommentBuilder
+com/erbf/bugsLife/config/SwaggerConfig.java
+ com.erbf.bugsLife.config.SwaggerConfig
+com/erbf/bugsLife/bugBoard/repository/BugBoardAnswerRepository.java
+ com.erbf.bugsLife.bugBoard.repository.BugBoardAnswerRepository
+com/erbf/bugsLife/bugBoard/domain/BugBoardAnswerLike.java
+ com.erbf.bugsLife.bugBoard.domain.BugBoardAnswerLike
+ com.erbf.bugsLife.bugBoard.domain.BugBoardAnswerLike$BugBoardAnswerLikeBuilder
+com/erbf/bugsLife/config/RestAuthenticationEntryPoint.java
+ com.erbf.bugsLife.config.RestAuthenticationEntryPoint
 com/erbf/bugsLife/bugBoard/domain/BugBoardQuestionTag.java
  com.erbf.bugsLife.bugBoard.domain.BugBoardQuestionTag
  com.erbf.bugsLife.bugBoard.domain.BugBoardQuestionTag$BugBoardQuestionTagBuilder
-com/erbf/bugsLife/bugBoard/application/web/BugBoardDetailDto.java
- com.erbf.bugsLife.bugBoard.application.web.BugBoardDetailDto
- com.erbf.bugsLife.bugBoard.application.web.BugBoardDetailDto$BugBoardDetailDtoBuilder
+com/erbf/bugsLife/bugBoard/application/web/BugBoardQuestionTagDto.java
+ com.erbf.bugsLife.bugBoard.application.web.BugBoardQuestionTagDto
+ com.erbf.bugsLife.bugBoard.application.web.BugBoardQuestionTagDto$BugBoardQuestionTagDtoBuilder
 com/erbf/bugsLife/bugBoard/application/web/BugBoardController.java
  com.erbf.bugsLife.bugBoard.application.web.BugBoardController
-com/erbf/bugsLife/bugBoard/service/BugBoardService.java
- com.erbf.bugsLife.bugBoard.service.BugBoardService
-com/erbf/bugsLife/bugBoard/application/web/BugBoardQuestionDto.java
- com.erbf.bugsLife.bugBoard.application.web.BugBoardQuestionDto
- com.erbf.bugsLife.bugBoard.application.web.BugBoardQuestionDto$BugBoardQuestionDtoBuilder
-com/erbf/bugsLife/bugBoard/repository/BugBoardQuestionTagRepository.java
- com.erbf.bugsLife.bugBoard.repository.BugBoardQuestionTagRepository
 com/erbf/bugsLife/bugBoard/service/logic/BugBoardServiceImpl.java
  com.erbf.bugsLife.bugBoard.service.logic.BugBoardServiceImpl
+com/erbf/bugsLife/bugBoard/repository/BugBoardAnswerLikeRepository.java
+ com.erbf.bugsLife.bugBoard.repository.BugBoardAnswerLikeRepository
+com/erbf/bugsLife/bugBoard/repository/BugBoardQuestionLikeRepository.java
+ com.erbf.bugsLife.bugBoard.repository.BugBoardQuestionLikeRepository
